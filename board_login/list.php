@@ -21,8 +21,7 @@
     ];
     $paging_count = sel_paging_count($param);
     $list = sel_board_list($param);
-    echo $list;
-    
+        
 ?>
 
 
@@ -52,6 +51,7 @@
             <?php if(isset($_SESSION["login_user"])) { ?>
                 <a href="write.php">글쓰기</a>
                 <a href="logout.php">로그아웃</a>
+                <a href="profile.php">프로필</a>
             <?php } else { ?> 
                 <a href="login.php">로그인</a>            
             <?php } ?>           
@@ -78,7 +78,7 @@
 
                     print "<tr>";
                     print "<td>$i_board</td>";
-                    print "<td><a href='detail.php?i_board=$i_board'>$title</a></td>";
+                    print "<td><a href='detail.php?i_board=${i_board}'>$title</a></td>";
                     print "<td>$name</td>";
                     print "<td>$created_at</td>";
                     print "</tr>";

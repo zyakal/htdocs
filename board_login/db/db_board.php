@@ -105,7 +105,7 @@ function sel_next(&$param){
     "   SELECT i_board        
         FROM t_board
         WHERE i_board > $i_board
-        ORDER BY i_board DESC
+        ORDER BY i_board
         LIMIT 1
     ";
     $result = mysqli_query($conn, $sql);

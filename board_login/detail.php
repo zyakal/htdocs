@@ -4,7 +4,9 @@
     if(isset($_SESSION["login_user"])) {
         $login_user = $_SESSION["login_user"];
     }
+
     $i_board = $_GET["i_board"];
+    
     
     $param = [
         "i_board" => $i_board // $_GET["i_board"]을 바로 적어줘도 된다
@@ -13,7 +15,8 @@
     $item = sel_board($param);  
     $next_board = sel_next($param);
     $prev_board = sel_prev($param);
-    echo print $i_board;
+    
+    
 
 ?>
 

@@ -1,5 +1,5 @@
 <?php    
-    //$_FILES에 담긴 배열 정보 구하기.
+    //$_FILES에 담긴 배열 정보 구하기. 확인 후에 주석처리
     var_dump($_FILES);
 
     // 임시로 저장된 정보(tmp_name)
@@ -36,7 +36,7 @@ switch($fileExt){
 if($fileType == 'image'){
 	// 허용할 확장자를 jpg, bmp, gif, png로 정함, 그 외에는 업로드 불가
 	if($extStatus){
-        $res_path = "../img";
+        $res_path = "../img"; // 상위 디렉토리 이동 ->  ../
         if(!is_dir($res_path)) {
             mkdir($res_path, 0777, true);
         }
