@@ -5,7 +5,7 @@
     define("PROFILE_PATH", "img/profile/");
     
     $login_user = &$_SESSION["login_user"];
-    print_r($_SESSION);
+    
 
     var_dump($_FILES);
     if($_FILES["img"]["name"] === "") {
@@ -14,7 +14,7 @@
     }
 
     function gen_uuid_v4() { 
-        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x'
+        return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x' // printf - % 자리에 변수들을 넣어준다.
             , mt_rand(0, 0xffff)
             , mt_rand(0, 0xffff)
             , mt_rand(0, 0xffff)
@@ -25,7 +25,7 @@
             , mt_rand(0, 0xffff) 
         ); 
     }
-    $img_name = $_FILES["img"]["name"];
+    $img_name = $_FILES["img"]["name"]; // $_FILES["포스트된 이미지의 이름"]["name=파일이름?"]
     $last_index = mb_strrpos($img_name, ".");
     $ext = mb_substr($img_name, $last_index);
 
