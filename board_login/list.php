@@ -1,5 +1,6 @@
 <?php
     include_once "db/db_board.php";
+    
     session_start();
     $nm = "";
     $page = 1; 
@@ -17,10 +18,11 @@
     $row_count = 20;
     $param = [
         "row_count" => $row_count,
-        "start_idx" => ($page - 1) * $row_count
+        "start_idx" => ($page - 1) * $row_count        
     ];
     $paging_count = sel_paging_count($param);
     $list = sel_board_list($param);
+    
         
 ?>
 
@@ -33,14 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="common.css">
     <title>리스트</title>
-    <style>
-        table, tr {    
-            border : 1px solid black;
-            border-collapse : collapse;
-            text-align: center;
-            }
-        
-    </style>
+    
 </head>
 <body>
     <div id="container">
@@ -51,7 +46,16 @@
             <?php if(isset($_SESSION["login_user"])) { ?>
                 <a href="write.php">글쓰기</a>
                 <a href="logout.php">로그아웃</a>
-                <a href="profile.php">프로필</a>
+                <a href="profile.php">
+                    프로필
+                    <?php  
+                        $session_img = $_SESSION["login_user"]["profile_img"];
+                        $profile_img = $session_img == null ? "basic.jpg" : $_SESSION["login_user"]["i_user"] . "/" . $session_img;
+                    ?>
+                    <div class="circular__img circular__size40">
+                        <img src="/board_login/img/profile/<?=$profile_img?>">
+                    </div>
+                </a>
             <?php } else { ?> 
                 <a href="login.php">로그인</a>            
             <?php } ?>           
@@ -75,11 +79,16 @@
                     $title = $row['title'];
                     $created_at = $row['created_at'];
                     $name = $row['nm'];
+                    $name_img = $row['profile_img'] == null ? "basic.jpg" : $row['i_user'] . "/" . $row['profile_img'] ;
 
                     print "<tr>";
                     print "<td>$i_board</td>";
                     print "<td><a href='detail.php?i_board=${i_board}'>$title</a></td>";
-                    print "<td>$name</td>";
+                    print "<td>" . $name . 
+                            "<div class='circular__img circular__size40'>
+                            <img src='/board_login/img/profile/$name_img'>
+                            </div>                    
+                            </td>";
                     print "<td>$created_at</td>";
                     print "</tr>";
                 }

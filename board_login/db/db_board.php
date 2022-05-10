@@ -38,7 +38,7 @@ function ins_board(&$param)
     $row_count = $param["row_count"];
     $conn = get_conn();
     $sql =
-    "   SELECT A.i_board, A.title, A.ctnt, B.nm, A.created_at 
+    "   SELECT A.i_board, A.title, A.ctnt, B.nm, A.created_at , B.profile_img, B.i_user
         FROM t_board A 
         INNER JOIN t_user B 
         ON A.i_user = B.i_user    
