@@ -25,6 +25,10 @@ function ins_board(&$param)
     $row_count = $param["row_count"];
     $sql = "SELECT CEIL(COUNT(i_board) / $row_count) as cnt
               FROM t_board";
+    if($param["search_txt"]!==""){
+        $sql .= " WHERE title LIKE '%{$param['search_txt']}%' ";
+    }
+    
     $conn = get_conn();
     $result = mysqli_query($conn, $sql);
     mysqli_close($conn); 
@@ -42,12 +46,18 @@ function ins_board(&$param)
         FROM t_board A 
         INNER JOIN t_user B 
         ON A.i_user = B.i_user    
-        ORDER BY i_board DESC
-        LIMIT $start_idx, $row_count";
+        
+    ";
+    if($param['search_txt']!==1){
+        $sql .= " WHERE title LIKE '%{$param['search_txt']}%' ";
+    }
+    $sql .= "ORDER BY i_board DESC 
+    LIMIT {$param['start_idx']}, {$param['row_count']};";
     $result = mysqli_query($conn, $sql);
     mysqli_close($conn);
     return $result;
  }
+
 
 function sel_board(&$param) {
     $i_board = $param["i_board"];

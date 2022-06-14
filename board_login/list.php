@@ -8,6 +8,11 @@
     if(isset($_GET["page"])) { 
         $page = intval($_GET["page"]);        
     } 
+    $search_txt = "";
+    if(isset($_GET["search_txt"])){
+        $search_txt = $_GET["search_txt"];
+
+    }
     
 
     if(isset($_SESSION["login_user"])) {
@@ -15,15 +20,16 @@
         $nm = $login_user["nm"];        
     }
     
-    $row_count = 20;
+    $row_count = 2;
     $param = [
         "row_count" => $row_count,
-        "start_idx" => ($page - 1) * $row_count        
+        "start_idx" => ($page - 1) * $row_count,  
+        "search_txt" => $search_txt
     ];
     $paging_count = sel_paging_count($param);
     $list = sel_board_list($param);
     
-        
+    
 ?>
 
 
@@ -64,6 +70,14 @@
         </header>
         <main>
             <h1>리스트</h1>
+            <div>
+                <form action="list.php" method="get">
+                    <div>
+                        <input type="search" name="search_txt">
+                        <input type="submit" value="검색">
+                    </div>
+                </form>
+            </div>
             <table>
                 <tr>
                     <th>글번호</th>
