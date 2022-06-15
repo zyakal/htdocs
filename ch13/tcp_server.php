@@ -9,4 +9,4 @@
 
     if(($ret = socket_bind($sock, $addr, $port ==false))<0){
         echo "socket_bind() failed: reason :" . socket_strerror($ret) . "<br>";
-    }
+    } 
