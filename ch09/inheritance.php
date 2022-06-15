@@ -1,4 +1,7 @@
 <?php
+
+    // 파일 하나에 class 하나가 원칙이다
+
     class People {
         //protected 를 쓰면 상속관계에서 사용이 가능하다
 
